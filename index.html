@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Candidatos Special Seguridad</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: banda violeta de marca + tabla única de candidatos, igual al formato GTN */
+:root {
+  --bg: #F5F4F2; --surface: #FFFFFF; --surface-2: #FAFAF9; --line: #EEEEEE; --line-soft: #F3F3F3;
+  --fg: #3C3C3B; --muted: #888888; --exp: #555555;
+  --brand: #51568B; --brand-fg: #FFFFFF; --accent: #00A099; --footer: #3C3C3B; --footer-fg: rgba(255,255,255,0.55);
+  --ok-bg: #EAF3DE; --ok-fg: #27500A; --ref-bg: #E6F1FB; --ref-fg: #0C447C;
+  --warn-bg: #FAEEDA; --warn-fg: #633806; --bad-bg: #FCEBEB; --bad-fg: #791F1F;
+  --alt-bg: #F0EBF8; --alt-fg: #4A2080; --note-bg: #FFF8E7; --note-line: #F6B21F;
+  --font: 'Rubik', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1C1C22; --surface: #26262E; --surface-2: #2C2C35; --line: #3A3A44; --line-soft: #33333C;
+  --fg: #ECECF0; --muted: #A2A2AE; --exp: #C8C8D0;
+  --brand: #3F4370; --brand-fg: #FFFFFF; --accent: #2BC2BA; --footer: #141418; --footer-fg: rgba(255,255,255,0.5);
+  --ok-bg: #24361A; --ok-fg: #B9DE98; --ref-bg: #16304A; --ref-fg: #A9CDF2;
+  --warn-bg: #3D2C12; --warn-fg: #F2CF96; --bad-bg: #431E1E; --bad-fg: #F3B2B2;
+  --alt-bg: #33264A; --alt-fg: #D3C2F2; --note-bg: #352C14; --note-line: #F6B21F;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #1C1C22; --surface: #26262E; --surface-2: #2C2C35; --line: #3A3A44; --line-soft: #33333C;
+  --fg: #ECECF0; --muted: #A2A2AE; --exp: #C8C8D0;
+  --brand: #3F4370; --brand-fg: #FFFFFF; --accent: #2BC2BA; --footer: #141418; --footer-fg: rgba(255,255,255,0.5);
+  --ok-bg: #24361A; --ok-fg: #B9DE98; --ref-bg: #16304A; --ref-fg: #A9CDF2;
+  --warn-bg: #3D2C12; --warn-fg: #F2CF96; --bad-bg: #431E1E; --bad-fg: #F3B2B2;
+  --alt-bg: #33264A; --alt-fg: #D3C2F2; --note-bg: #352C14; --note-line: #F6B21F;
+  color-scheme: dark }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--fg); }
+.band { background: var(--brand); color: var(--brand-fg); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band-inner { max-width: 1200px; margin: 0 auto; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 20px; }
+.brand { font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.brand span { color: var(--accent); }
+.doc-info { font-size: 12px; opacity: 0.65; text-align: right; line-height: 1.5; }
+.hero { padding-block: 0 32px; }
+.hero-divider { width: 48px; height: 4px; background: var(--accent); margin: 14px 0 16px; }
+.hero h1 { font-size: 28px; font-weight: 700; margin: 0 0 6px; text-wrap: balance; }
+.hero p { font-size: 14px; opacity: 0.7; margin: 0; }
+
+.wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.container { max-width: 1200px; margin: 0 auto; padding-block: 28px 56px; display: flex; flex-direction: column; gap: 16px; }
+
+.legend { display: flex; gap: 8px 10px; flex-wrap: wrap; align-items: center; }
+.legend-title { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+.note { background: var(--note-bg); border-left: 4px solid var(--note-line); border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: var(--warn-fg); line-height: 1.5; }
+
+.card { background: var(--surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 2px 12px rgba(0,0,0,0.05); min-width: 0; }
+.card-header { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; background: var(--surface-2); }
+.card-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; background: var(--alt-bg); color: var(--alt-fg); }
+.card-title { font-size: 14px; font-weight: 700; }
+.card-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; min-width: 1060px; border-collapse: collapse; font-size: 13px; }
+th { font-size: 10px; font-weight: 600; color: var(--muted); text-align: left; padding: 10px 12px; border-bottom: 1.5px solid var(--line); background: var(--surface-2); white-space: nowrap; letter-spacing: 0.05em; text-transform: uppercase; }
+td { padding: 12px; border-bottom: 1px solid var(--line-soft); vertical-align: top; line-height: 1.45; }
+tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--surface-2); }
+td.num { font-variant-numeric: tabular-nums; }
+.name-cell { font-weight: 600; white-space: nowrap; }
+.rank { display: block; font-size: 10px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+.exp-cell, .ref-cell { color: var(--exp); font-size: 12px; }
+.exp-cell strong { color: var(--fg); font-weight: 600; }
+.flag { margin-top: 6px; background: var(--bad-bg); border-left: 4px solid #AC385F; border-radius: 0 8px 8px 0; padding: 8px 12px; font-size: 12px; color: var(--bad-fg); line-height: 1.4; }
+
+.pill { display: inline-block; font-size: 10px; padding: 3px 9px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+.p-ok { background: var(--ok-bg); color: var(--ok-fg); }
+.p-ref { background: var(--ref-bg); color: var(--ref-fg); }
+.p-warn { background: var(--warn-bg); color: var(--warn-fg); }
+.p-bad { background: var(--bad-bg); color: var(--bad-fg); }
+.p-alt { background: var(--alt-bg); color: var(--alt-fg); }
+
+.stats { display: flex; gap: 8px 20px; padding: 14px 20px; border-top: 1px solid var(--line); background: var(--surface-2); flex-wrap: wrap; }
+.stat { font-size: 12px; color: var(--muted); }
+.stat strong { color: var(--brand); font-weight: 600; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stat strong { color: var(--accent); } }
+:root[data-theme="dark"] .stat strong { color: var(--accent); }
+
+a.cv-link { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 12px; font-weight: 500; text-decoration: none; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; white-space: nowrap; }
+a.cv-link:hover, a.cv-link:focus-visible { background: var(--alt-bg); border-color: var(--brand); outline: none; }
+a.cv-link svg { width: 11px; height: 11px; flex-shrink: 0; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) a.cv-link { color: var(--accent); } }
+:root[data-theme="dark"] a.cv-link { color: var(--accent); }
+.cv-na { font-size: 11px; color: var(--muted); }
+.footer { background: var(--footer); color: var(--footer-fg); text-align: center; font-size: 12px; line-height: 1.6; padding-block: 20px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.footer span { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="band">
+  <div class="band-inner">
+    <header class="site-header">
+      <div class="brand">TALENTO <span>CUMBRE</span></div>
+      <div class="doc-info">Búsqueda Special Seguridad · Analista Administrativo/a<br>Octubre 2026 · Confidencial</div>
+    </header>
+    <div class="hero">
+      <div class="hero-divider"></div>
+      <h1>Candidatos seleccionados</h1>
+      <p>Vacante: Analista Administrativo/a — Facturación y Conciliaciones · 4 horas, lunes a viernes · 5 candidatos seleccionados</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+<main class="container">
+
+  <div class="legend">
+    <span class="legend-title">Estado:</span>
+    <span class="pill p-ok">Seleccionado/a</span>
+    <span class="pill p-warn">Sin disp. inmediata</span>
+    &nbsp;
+    <span class="legend-title">Referencias:</span>
+    <span class="pill p-ok">Comprobadas</span>
+    <span class="pill p-ref">Pedidas</span>
+  </div>
+
+  <div class="note"><strong>Estado al 20/10:</strong> perfiles evaluados en primera entrevista con Talento Cumbre. Entrevistas presenciales con Cristian en curso. Referencias laborales pedidas a los cinco candidatos; esta columna se actualiza a medida que se completan los llamados.</div>
+
+  <section class="card" aria-labelledby="t-terna">
+    <div class="card-header">
+      <div class="card-icon">AA</div>
+      <div>
+        <div class="card-title" id="t-terna">Analista Administrativo/a — Oficina Plaza Independencia</div>
+        <div class="card-sub">5 candidatos seleccionados</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:14%">Nombre y apellido</th>
+            <th style="width:5%">Edad</th>
+            <th style="width:10%">Est. civil / hijos</th>
+            <th style="width:12%">Estudios</th>
+            <th style="width:30%">Resumen de experiencia</th>
+            <th style="width:6%">Odoo</th>
+            <th style="width:17%">Referencias laborales</th>
+            <th style="width:9%">Estado</th>
+            <th style="width:8%">CV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name-cell">Katherina Leyton</td>
+            <td class="num">35</td>
+            <td>En pareja<br>Sin hijos</td>
+            <td>Graduada UNCuyo</td>
+            <td class="exp-cell">3 años en estudios contables: <strong>facturación, conciliaciones bancarias</strong>, registro de gastos, liquidación de impuestos y sueldos, informes para estudio externo. Gestionó comprobantes de <strong>50 empresas</strong> con sistema de archivo propio. Cubrió licencias administrativas en bodega y distribuidora (pagos a proveedores, stock).</td>
+            <td>No</td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Ex compañera Torre Pulisich.</td>
+            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/keXzAJ93cPsRfVjNZL4c0A/14696086" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+          <tr>
+            <td class="name-cell">Ignacio Granata</td>
+            <td class="num">32</td>
+            <td>N/E<br>Vive con su padre y hermano</td>
+            <td>Estudiante avanzado Cs. Económicas</td>
+            <td class="exp-cell">Laboratorio: <strong>automatizaciones en Odoo</strong> (compras, pagos, actualización de precios), costeo e inventario. Biofarma: <strong>conciliaciones bancarias</strong>, viáticos con tarjeta, cuentas corrientes, nexo con estudio contable. Facturación y conciliaciones en Brazemar (Contabilium); administración y tesorería en Clemexter.
+              <div class="flag">⚠ <strong>A evaluar:</strong> proceso avanzado en paralelo (full time). Disponibilidad desde el lunes.</div></td>
+            <td><strong>Sí</strong></td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Titular del laboratorio veterinario · Roberto, jefe de Adm. y Finanzas (Biofarma).</td>
+            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/Bx3z_MyvfZewoxrD_FqebA/14670935" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+          <tr>
+            <td class="name-cell">Nicolás Martín</td>
+            <td class="num">27</td>
+            <td>N/E<br>Comparte departamento con estudiantes</td>
+            <td>Cs. Económicas U. del Aconcagua (4 materias)</td>
+            <td class="exp-cell">Práctica en Bodega Andeluna (300 h): <strong>facturación, conciliaciones bancarias</strong>, cuentas corrientes, registración contable (Bejerman). 5 meses en empresa de licitaciones públicas: facturación, remitos, documentación IVA, circuito de proveedores.</td>
+            <td>No</td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Andeluna y empresa de licitaciones.</td>
+            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/VyquCE8ZDrlvF6d4-Q3K3Q/14546825" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+          <tr>
+            <td class="name-cell">Andrea del Valle Muñoz</td>
+            <td class="num">28</td>
+            <td>En pareja<br>Hijos N/E</td>
+            <td>Lic. en Administración de Negocios (Colegio Universitario Central) · Diplomatura en Capital Humano, U. de Mendoza (en curso)</td>
+            <td class="exp-cell">Fecovita (2025–2026), administrativa de finanzas: <strong>pago a proveedores y tesorería</strong>, registración contable, <strong>conciliación de cuentas</strong> de proveedores, ejecución del flujo de fondos, gestión de cheques propios y de terceros, contacto con bancos y sucursales. Bodega Mauricio Lorca (2024–2025): rol administrativo-contable integral, <strong>control y registración de tarjetas de crédito</strong>, vínculo con contabilidad y compras. Antes: asistente de marketing en Luigi Bosca (2022–2024) y secretaria administrativa en consultorio médico (2020–2022). Confirmó experiencia en <strong>facturación y conciliaciones bancarias</strong>.</td>
+            <td>N/E</td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>RR. HH. de Mauricio Lorca · Pablo, ex jefe (Fecovita).</td>
+            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/yX-QCUe0Hlvbog42KmLMPw/14545018" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+          <tr>
+            <td class="name-cell">Anahí Astudillo</td>
+            <td class="num">28</td>
+            <td>En pareja<br>Hijos N/E</td>
+            <td>Lic. en Administración, U. del Aconcagua</td>
+            <td class="exp-cell">Geotub S.A. (ene 2024 – actualidad), analista de Administración y Finanzas: <strong>facturación, conciliaciones bancarias y de tarjetas</strong>, carga de facturas y órdenes de pago, asientos contables, comercio exterior. Migró de Tango a <strong>Odoo</strong> hace un año. Adelantó la entrega de conciliaciones al día 1–5 del mes y detectó un año de facturación errónea de su principal proveedor. Antes: Distribuidora Mayorista Porro (2023) y Dolphin La Española (2019–2023).
+              <div class="flag">⚠ <strong>Sin disponibilidad inmediata:</strong> actualmente empleada en Geotub; requiere aprox. una semana de preaviso (podría acortarlo según lo acuerde con su empresa).</div></td>
+            <td><strong>Sí</strong></td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Distribuidora Porro (empleo actual no consultable).</td>
+            <td><span class="pill p-warn">Sin disp. inmediata</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/elKpGkhnH6Dk5FlRS0JxUg/14680536" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>5</strong> candidatos presentados</div>
+      <div class="stat"><strong>Odoo:</strong> 2 de 5 (Ignacio, Anahí)</div>
+      <div class="stat"><strong>Referencias laborales:</strong> pedidas (5 de 5)</div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<footer class="footer">
+  <span>Talento Cumbre</span> — Psicología | Recursos Humanos &nbsp;·&nbsp;
+  rocio.hidalgo@talentocumbre.com &nbsp;·&nbsp; +549 261 3371591 &nbsp;·&nbsp;
+  Documento confidencial · Special Seguridad · Octubre 2026
+</footer>
+</body>
+</html>
