@@ -94,6 +94,13 @@ a.cv-link svg { width: 11px; height: 11px; flex-shrink: 0; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) a.cv-link { color: var(--accent); } }
 :root[data-theme="dark"] a.cv-link { color: var(--accent); }
 .cv-na { font-size: 11px; color: var(--muted); }
+
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tab { padding: 8px 18px; border-radius: 20px; border: 1.5px solid var(--line); font: 500 13px var(--font); cursor: pointer; background: var(--surface); color: var(--muted); }
+.tab[aria-selected="true"] { background: var(--brand); color: var(--brand-fg); border-color: var(--brand); }
+.tab:hover:not([aria-selected="true"]), .tab:focus-visible { color: var(--fg); border-color: var(--brand); outline: none; }
+.tab .count { font-weight: 600; margin-left: 4px; opacity: 0.8; }
+.ci-out { background: var(--bad-bg); color: var(--bad-fg); }
 .footer { background: var(--footer); color: var(--footer-fg); text-align: center; font-size: 12px; line-height: 1.6; padding-block: 20px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .footer span { color: var(--accent); }
 </style>
@@ -120,20 +127,120 @@ a.cv-link svg { width: 11px; height: 11px; flex-shrink: 0; }
     <span class="legend-title">Estado:</span>
     <span class="pill p-ok">Seleccionado/a</span>
     <span class="pill p-warn">Sin disp. inmediata</span>
+    <span class="pill p-bad">No avanza</span>
+    <span class="pill p-alt">Desistió</span>
     &nbsp;
     <span class="legend-title">Referencias:</span>
     <span class="pill p-ok">Comprobadas</span>
     <span class="pill p-ref">Pedidas</span>
   </div>
 
-  <div class="note"><strong>Estado al 20/10:</strong> perfiles evaluados en primera entrevista con Talento Cumbre. Entrevistas presenciales con Cristian en curso. Referencias laborales pedidas a los cinco candidatos; esta columna se actualiza a medida que se completan los llamados.</div>
+  <div class="note"><strong>Estado al 21/10:</strong> entrevistas presenciales con Cristian realizadas. Katherina y Nicolás no avanzan; Ignacio desistió por otra propuesta. Siguen en proceso Andrea, Anahí (sin disponibilidad inmediata), Martín, Matías y Victoria (entrevistados el 21/10).</div>
 
-  <section class="card" aria-labelledby="t-terna">
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-proceso" aria-controls="panel-proceso" aria-selected="true">En proceso<span class="count">5</span></button>
+    <button class="tab" role="tab" id="tab-noavanzan" aria-controls="panel-noavanzan" aria-selected="false">No avanzan<span class="count">3</span></button>
+  </div>
+
+  <div id="panel-proceso" class="panel" role="tabpanel" aria-labelledby="tab-proceso">
+  <section class="card">
     <div class="card-header">
       <div class="card-icon">AA</div>
       <div>
-        <div class="card-title" id="t-terna">Analista Administrativo/a — Oficina Plaza Independencia</div>
-        <div class="card-sub">5 candidatos seleccionados</div>
+        <div class="card-title">Analista Administrativo/a — En proceso</div>
+        <div class="card-sub">5 candidatos en proceso</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:14%">Nombre y apellido</th>
+            <th style="width:5%">Edad</th>
+            <th style="width:10%">Est. civil / hijos</th>
+            <th style="width:12%">Estudios</th>
+            <th style="width:30%">Resumen de experiencia</th>
+            <th style="width:6%">Odoo</th>
+            <th style="width:17%">Referencias laborales</th>
+            <th style="width:9%">Estado</th>
+            <th style="width:8%">CV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name-cell">Andrea del Valle Muñoz</td>
+            <td class="num">28</td>
+            <td>En pareja<br>Hijos N/E</td>
+            <td>Lic. en Administración de Negocios (Colegio Universitario Central) · Diplomatura en Capital Humano, U. de Mendoza (en curso)</td>
+            <td class="exp-cell">Fecovita (2025–2026), administrativa de finanzas: <strong>pago a proveedores y tesorería</strong>, registración contable, <strong>conciliación de cuentas</strong> de proveedores, ejecución del flujo de fondos, gestión de cheques propios y de terceros, contacto con bancos y sucursales. Bodega Mauricio Lorca (2024–2025): rol administrativo-contable integral, <strong>control y registración de tarjetas de crédito</strong>, vínculo con contabilidad y compras. Antes: asistente de marketing en Luigi Bosca (2022–2024) y secretaria administrativa en consultorio médico (2020–2022). Confirmó experiencia en <strong>facturación y conciliaciones bancarias</strong>.</td>
+            <td>N/E</td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>RR. HH. de Mauricio Lorca · Pablo, ex jefe (Fecovita).</td>
+            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/yX-QCUe0Hlvbog42KmLMPw/14545018" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+          <tr>
+            <td class="name-cell">Anahí Astudillo</td>
+            <td class="num">28</td>
+            <td>En pareja<br>Hijos N/E</td>
+            <td>Lic. en Administración, U. del Aconcagua</td>
+            <td class="exp-cell">Geotub S.A. (ene 2024 – actualidad), analista de Administración y Finanzas: <strong>facturación, conciliaciones bancarias y de tarjetas</strong>, carga de facturas y órdenes de pago, asientos contables, comercio exterior. Migró de Tango a <strong>Odoo</strong> hace un año. Adelantó la entrega de conciliaciones al día 1–5 del mes y detectó un año de facturación errónea de su principal proveedor. Antes: Distribuidora Mayorista Porro (2023) y Dolphin La Española (2019–2023).
+              <div class="flag">⚠ <strong>Sin disponibilidad inmediata:</strong> actualmente empleada en Geotub; requiere aprox. una semana de preaviso (podría acortarlo según lo acuerde con su empresa).</div></td>
+            <td><strong>Sí</strong></td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Distribuidora Porro (empleo actual no consultable).</td>
+            <td><span class="pill p-warn">Sin disp. inmediata</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/elKpGkhnH6Dk5FlRS0JxUg/14680536" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+          <tr>
+            <td class="name-cell">Martín Romero</td>
+            <td class="num">29</td>
+            <td>N/E</td>
+            <td>Contador Público, U. de Mendoza (2020)</td>
+            <td class="exp-cell">Estudio contable Hugo Tillar (2019–2020): de contador junior (carga de facturas, <strong>conciliaciones bancarias</strong>) a balances, estados de resultados e impuestos. Sushi Club Mendoza (2020–2022): administración, caja y bancos, liquidación y pago de sueldos, stock, <strong>pago a proveedores</strong>. Australia (2024 – may 2026): operaciones y logística en empresa de energía solar; inglés avanzado. Actual: part time administrativo-contable en marca de ropa, con <strong>Odoo</strong> (ventas, contabilidad, compras, bancos, reportes).</td>
+            <td><strong>Sí</strong></td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Estudio contable · Sushi Club · empleo en Australia.</td>
+            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/xcw7eLYUrfhswPl_IagqAA/14639609" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+          <tr>
+            <td class="name-cell">Matías Sánchez</td>
+            <td class="num">20</td>
+            <td>N/E<br>Vive con su madre y hermanos</td>
+            <td>Lic. en Administración de Empresas, IUCE (2º año, en curso)</td>
+            <td class="exp-cell">RZ Servicios SAS (2024–2026; construcción, metalúrgica y andamios). Área administrativa (sep 2025 – may 2026): carga de facturas de compras en <strong>Odoo</strong>, control de pagos y cuentas corrientes, conciliación de comprobantes ARCA contra Odoo y Excel, <strong>facturación a clientes</strong> según remitos, planillas horarias por centro de costos. Antes, control de stock y depósito. Renunció al no ser reasignado a administración. Explora automatizaciones con IA.</td>
+            <td><strong>Sí</strong></td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Marit, ex jefa y RR. HH. (RZ Servicios).</td>
+            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/5Adv-ifWBhZUFZeoCsh3Kw/14636761" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+          <tr>
+            <td class="name-cell">Victoria Naman</td>
+            <td class="num">33</td>
+            <td>En pareja<br>Hijos N/E</td>
+            <td>Técnica en Gestión de Empresas (ITU) · Lic. en Gestión Tecnológica de las Organizaciones, UNCuyo (en curso)</td>
+            <td class="exp-cell">ADEN (may 2021 – abr 2025): secretaria académica y luego <strong>analista de facturación y cobranzas</strong> en <strong>Odoo</strong>, conciliación de cobros de 5 pasarelas y gestión de morosos. Amideva Laboratorio, Uruguay (remoto, may – oct 2025): ventas, cobranzas, facturación en Odoo. Montefrio Distribuidora (nov 2025 – abr 2026): <strong>pago a proveedores</strong>, control de facturación, conciliación de cuentas con proveedores, combustible y seguros de la flota.</td>
+            <td><strong>Sí</strong></td>
+            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>RR. HH. de ADEN.</td>
+            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/pzb8SWTxKv4V2vpRADj9dQ/14550535" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>5</strong> candidatos</div>
+      <div class="stat"><strong>Odoo:</strong> 4 de 5</div>
+      <div class="stat"><strong>Referencias laborales:</strong> pedidas (5 de 5)</div>
+    </div>
+  </section>
+  </div>
+
+  <div id="panel-noavanzan" class="panel" role="tabpanel" aria-labelledby="tab-noavanzan" hidden>
+  <section class="card">
+    <div class="card-header">
+      <div class="card-icon ci-out">NA</div>
+      <div>
+        <div class="card-title">Entrevistados que no avanzan</div>
+        <div class="card-sub">3 candidatos · entrevistados por Cristian el 21/10</div>
       </div>
     </div>
     <div class="table-wrap">
@@ -160,7 +267,7 @@ a.cv-link svg { width: 11px; height: 11px; flex-shrink: 0; }
             <td class="exp-cell">3 años en estudios contables: <strong>facturación, conciliaciones bancarias</strong>, registro de gastos, liquidación de impuestos y sueldos, informes para estudio externo. Gestionó comprobantes de <strong>50 empresas</strong> con sistema de archivo propio. Cubrió licencias administrativas en bodega y distribuidora (pagos a proveedores, stock).</td>
             <td>No</td>
             <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Ex compañera Torre Pulisich.</td>
-            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><span class="pill p-bad">No avanza</span></td>
             <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/keXzAJ93cPsRfVjNZL4c0A/14696086" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
           </tr>
           <tr>
@@ -169,10 +276,10 @@ a.cv-link svg { width: 11px; height: 11px; flex-shrink: 0; }
             <td>N/E<br>Vive con su padre y hermano</td>
             <td>Estudiante avanzado Cs. Económicas</td>
             <td class="exp-cell">Laboratorio: <strong>automatizaciones en Odoo</strong> (compras, pagos, actualización de precios), costeo e inventario. Biofarma: <strong>conciliaciones bancarias</strong>, viáticos con tarjeta, cuentas corrientes, nexo con estudio contable. Facturación y conciliaciones en Brazemar (Contabilium); administración y tesorería en Clemexter.
-              <div class="flag">⚠ <strong>A evaluar:</strong> proceso avanzado en paralelo (full time). Disponibilidad desde el lunes.</div></td>
+              <div class="flag">Avanzó con otra propuesta laboral.</div></td>
             <td><strong>Sí</strong></td>
             <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Titular del laboratorio veterinario · Roberto, jefe de Adm. y Finanzas (Biofarma).</td>
-            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><span class="pill p-alt">Desistió</span></td>
             <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/Bx3z_MyvfZewoxrD_FqebA/14670935" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
           </tr>
           <tr>
@@ -183,41 +290,19 @@ a.cv-link svg { width: 11px; height: 11px; flex-shrink: 0; }
             <td class="exp-cell">Práctica en Bodega Andeluna (300 h): <strong>facturación, conciliaciones bancarias</strong>, cuentas corrientes, registración contable (Bejerman). 5 meses en empresa de licitaciones públicas: facturación, remitos, documentación IVA, circuito de proveedores.</td>
             <td>No</td>
             <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Andeluna y empresa de licitaciones.</td>
-            <td><span class="pill p-ok">Seleccionado/a</span></td>
+            <td><span class="pill p-bad">No avanza</span></td>
             <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/VyquCE8ZDrlvF6d4-Q3K3Q/14546825" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
-          </tr>
-          <tr>
-            <td class="name-cell">Andrea del Valle Muñoz</td>
-            <td class="num">28</td>
-            <td>En pareja<br>Hijos N/E</td>
-            <td>Lic. en Administración de Negocios (Colegio Universitario Central) · Diplomatura en Capital Humano, U. de Mendoza (en curso)</td>
-            <td class="exp-cell">Fecovita (2025–2026), administrativa de finanzas: <strong>pago a proveedores y tesorería</strong>, registración contable, <strong>conciliación de cuentas</strong> de proveedores, ejecución del flujo de fondos, gestión de cheques propios y de terceros, contacto con bancos y sucursales. Bodega Mauricio Lorca (2024–2025): rol administrativo-contable integral, <strong>control y registración de tarjetas de crédito</strong>, vínculo con contabilidad y compras. Antes: asistente de marketing en Luigi Bosca (2022–2024) y secretaria administrativa en consultorio médico (2020–2022). Confirmó experiencia en <strong>facturación y conciliaciones bancarias</strong>.</td>
-            <td>N/E</td>
-            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>RR. HH. de Mauricio Lorca · Pablo, ex jefe (Fecovita).</td>
-            <td><span class="pill p-ok">Seleccionado/a</span></td>
-            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/yX-QCUe0Hlvbog42KmLMPw/14545018" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
-          </tr>
-          <tr>
-            <td class="name-cell">Anahí Astudillo</td>
-            <td class="num">28</td>
-            <td>En pareja<br>Hijos N/E</td>
-            <td>Lic. en Administración, U. del Aconcagua</td>
-            <td class="exp-cell">Geotub S.A. (ene 2024 – actualidad), analista de Administración y Finanzas: <strong>facturación, conciliaciones bancarias y de tarjetas</strong>, carga de facturas y órdenes de pago, asientos contables, comercio exterior. Migró de Tango a <strong>Odoo</strong> hace un año. Adelantó la entrega de conciliaciones al día 1–5 del mes y detectó un año de facturación errónea de su principal proveedor. Antes: Distribuidora Mayorista Porro (2023) y Dolphin La Española (2019–2023).
-              <div class="flag">⚠ <strong>Sin disponibilidad inmediata:</strong> actualmente empleada en Geotub; requiere aprox. una semana de preaviso (podría acortarlo según lo acuerde con su empresa).</div></td>
-            <td><strong>Sí</strong></td>
-            <td class="ref-cell"><span class="pill p-ref">Pedidas</span><br>Distribuidora Porro (empleo actual no consultable).</td>
-            <td><span class="pill p-warn">Sin disp. inmediata</span></td>
-            <td><a class="cv-link" href="https://tt.na.teamtailor.com/shares/elKpGkhnH6Dk5FlRS0JxUg/14680536" target="_blank" rel="noopener">Ver CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="stats">
-      <div class="stat"><strong>5</strong> candidatos presentados</div>
-      <div class="stat"><strong>Odoo:</strong> 2 de 5 (Ignacio, Anahí)</div>
-      <div class="stat"><strong>Referencias laborales:</strong> pedidas (5 de 5)</div>
+      <div class="stat"><strong>3</strong> candidatos</div>
+      <div class="stat"><strong>No avanzan:</strong> 2</div>
+      <div class="stat"><strong>Desistió:</strong> 1</div>
     </div>
   </section>
+  </div>
 
 </main>
 </div>
@@ -227,5 +312,15 @@ a.cv-link svg { width: 11px; height: 11px; flex-shrink: 0; }
   rocio.hidalgo@talentocumbre.com &nbsp;·&nbsp; +549 261 3371591 &nbsp;·&nbsp;
   Documento confidencial · Special Seguridad · Octubre 2026
 </footer>
+<script>
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-selected','false');});
+    document.querySelectorAll('.panel').forEach(function(pn){pn.hidden=true;});
+    t.setAttribute('aria-selected','true');
+    document.getElementById(t.getAttribute('aria-controls')).hidden=false;
+  });
+});
+</script>
 </body>
 </html>
